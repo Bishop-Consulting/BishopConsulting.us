@@ -1338,6 +1338,160 @@ svg {
   box-shadow: 0 0 18px rgba(45, 140, 255, 0.72);
 }
 
+.state-service-map {
+  position: relative;
+  min-height: 560px;
+  overflow: visible;
+  background:
+    radial-gradient(circle at 24% 60%, rgba(45, 140, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 78% 39%, rgba(62, 237, 123, 0.11), transparent 22%),
+    radial-gradient(circle at 50% 50%, rgba(45, 140, 255, 0.1), transparent 58%);
+}
+
+.state-service-map::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at 50% 50%, black 0, rgba(0, 0, 0, 0.82) 58%, transparent 92%);
+}
+
+.state-map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.state-outline {
+  fill: url(#stateGlow);
+  stroke: rgba(45, 140, 255, 0.56);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+  filter: drop-shadow(0 0 26px rgba(45, 140, 255, 0.22));
+}
+
+.texas-outline {
+  stroke: rgba(45, 140, 255, 0.64);
+  fill-opacity: 0.92;
+}
+
+.tennessee-outline {
+  stroke: rgba(62, 237, 123, 0.58);
+  fill-opacity: 0.82;
+}
+
+.state-region {
+  position: absolute;
+  z-index: 2;
+}
+
+.texas-region {
+  left: calc(32.41% - 75px);
+  top: calc(43.70% - 75px);
+  width: 150px;
+  height: 150px;
+}
+
+.tennessee-region {
+  left: calc(91.22% - 72px);
+  top: calc(42.07% - 72px);
+  width: 144px;
+  height: 144px;
+}
+
+.state-name {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 4;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.46);
+  padding: 7px 12px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.state-radius {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(45, 140, 255, 0.48);
+  border-radius: 50%;
+  background: rgba(45, 140, 255, 0.08);
+  box-shadow:
+    0 0 56px rgba(45, 140, 255, 0.18),
+    inset 0 0 46px rgba(45, 140, 255, 0.1);
+  transform: translate(-50%, -50%);
+  animation: radiusPulse 4.8s ease-in-out infinite;
+}
+
+.state-radius-soft {
+  width: 132%;
+  height: 132%;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+  animation-delay: 1.4s;
+}
+
+.tennessee-radius {
+  width: 100%;
+  height: 100%;
+  border-color: rgba(62, 237, 123, 0.42);
+  background: rgba(62, 237, 123, 0.07);
+}
+
+.tennessee-radius-soft {
+  width: 135%;
+  height: 135%;
+}
+
+.map-city-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  color: #2d8cff;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.map-city-pin svg {
+  filter: drop-shadow(0 0 18px rgba(45, 140, 255, 0.74));
+}
+
+.map-city-pin strong {
+  margin-top: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.7);
+}
+
+.map-city-pin small {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .location-map {
   position: relative;
   min-height: 520px;
@@ -1952,6 +2106,24 @@ svg {
     max-width: none;
   }
 
+  .state-service-map {
+    min-height: 480px;
+  }
+
+  .texas-region {
+    left: calc(32.41% - 68px);
+    top: calc(43.70% - 68px);
+    width: 136px;
+    height: 136px;
+  }
+
+  .tennessee-region {
+    left: calc(91.22% - 62px);
+    top: calc(42.07% - 62px);
+    width: 124px;
+    height: 124px;
+  }
+
   .location-map {
     min-height: 460px;
   }
@@ -2232,6 +2404,38 @@ svg {
   .painpoint-check-icon {
     width: 25px;
     height: 25px;
+  }
+
+  .state-service-map {
+    min-height: 430px;
+    margin-top: 4px;
+  }
+
+  .texas-region {
+    left: calc(32.41% - 58px);
+    top: calc(43.70% - 58px);
+    width: 116px;
+    height: 116px;
+  }
+
+  .tennessee-region {
+    left: calc(91.22% - 52px);
+    top: calc(42.07% - 52px);
+    width: 104px;
+    height: 104px;
+  }
+
+  .state-name {
+    padding: 6px 9px;
+    font-size: 0.62rem;
+  }
+
+  .map-city-pin strong {
+    font-size: 0.86rem;
+  }
+
+  .map-city-pin small {
+    font-size: 0.58rem;
   }
 
   .location-map {

@@ -412,100 +412,69 @@ export default function Home() {
 
       <section id="location" className="location-section relative overflow-hidden bg-[#050505] px-5 py-24 text-white sm:px-8 lg:py-32">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_48%,rgba(45,140,255,0.16),transparent_34%),radial-gradient(circle_at_38%_62%,rgba(62,237,123,0.08),transparent_30%)]" />
-        <div className="location-stack mx-auto max-w-[1380px]">
-          <div className="location-block grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-            <div className="relative z-10">
-              <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem]">
-                Headquarters
-              </h2>
-              <p className="mt-7 max-w-[520px] text-lg leading-8 text-white/58">
-                Based in Johnson City, Tennessee. We physically serve businesses within a 40-mile radius although exceptions can be made and support digital workflow projects wherever your team operates.
-              </p>
-              <div className="location-proof">
-                <span>Physical service radius: 40 miles</span>
-                <span>Digital service: remote-first delivery</span>
-              </div>
-            </div>
-
-            <div className="location-map" aria-label="Map showing Johnson City 40 mile service radius and digital service reach">
-              <svg className="location-lines" viewBox="0 0 820 460" aria-hidden="true">
-                <path className="map-road map-road-one" d="M48 310 C176 236 274 244 388 282 C512 323 628 284 774 170" />
-                <path className="map-road map-road-two" d="M92 150 C234 206 342 188 454 122 C556 62 658 83 760 126" />
-                <path className="map-road map-road-three" d="M180 414 C250 322 326 276 420 244 C536 206 632 222 746 272" />
-                <path className="map-river" d="M36 224 C154 178 246 190 318 222 C402 260 494 250 586 206 C654 174 728 170 802 202" />
-              </svg>
-
-              <div className="service-radius" aria-hidden="true">
-                <span className="radius-ring radius-ring-one" />
-                <span className="radius-ring radius-ring-two" />
-                <span className="radius-ring radius-ring-three" />
-              </div>
-
-              <div className="city-pin">
-                <span className="pin-pulse" />
-                <MapPin className="h-9 w-9" />
-                <strong>Johnson City</strong>
-                <small>40 mile radius</small>
-              </div>
-
-              <span className="map-label label-kingsport">Kingsport</span>
-              <span className="map-label label-bristol">Bristol</span>
-              <span className="map-label label-elizabeth">Elizabethton</span>
-              <span className="map-label label-greeneville">Greeneville</span>
-
-              <div className="digital-reach">
-                <Sparkles className="h-5 w-5 text-[#2d8cff]" />
-                <span>Digital service beyond the radius</span>
-              </div>
+        <div className="mx-auto grid max-w-[1380px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+          <div className="relative z-10">
+            <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem]">
+              Service Map
+            </h2>
+            <p className="mt-7 max-w-[540px] text-lg leading-8 text-white/58">
+              We physically serve businesses near Johnson City, Tennessee and Brownwood, Texas, with remote-first workflow support available wherever your team operates.
+            </p>
+            <div className="location-proof">
+              <span>Johnson City area: 60 mile radius</span>
+              <span>Brownwood area: 100 mile radius</span>
+              <span>Digital service: available beyond both regions</span>
             </div>
           </div>
 
-          <div className="location-block grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-            <div className="relative z-10">
-              <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem]">
-                Texas Location
-              </h2>
-              <p className="mt-7 max-w-[520px] text-lg leading-8 text-white/58">
-                Also serving from Brownwood, Texas with a 100-mile physical service radius and remote-first support for workflow automation projects beyond the local area.
-              </p>
-              <div className="location-proof">
-                <span>Brownwood area service radius: 100 miles</span>
-                <span>Digital service: available anywhere</span>
-              </div>
-            </div>
+          <div className="state-service-map" aria-label="Digital map showing Tennessee and Texas service circles for Johnson City and Brownwood">
+            <svg className="state-map-svg" viewBox="0 0 920 560" aria-hidden="true">
+              <defs>
+                <linearGradient id="stateGlow" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stopColor="#1a75ff" stopOpacity="0.28" />
+                  <stop offset="100%" stopColor="#3eed7b" stopOpacity="0.12" />
+                </linearGradient>
+              </defs>
+              <path className="map-road map-road-one" d="M58 426 C180 334 298 316 420 348 C560 386 690 326 858 190" />
+              <path className="map-road map-road-two" d="M118 128 C264 210 388 174 512 112 C638 50 746 82 858 144" />
+              <path className="map-road map-road-three" d="M74 292 C238 238 364 254 486 300 C620 350 744 322 884 242" />
+              <g transform="translate(40 20) scale(0.86)">
+                <path className="state-outline texas-outline" d="M206.5 51.5 L266.5 51.5 L266.5 136.4 L269.1 135.9 L276.5 144.3 L280.5 142.8 L291.0 143.3 L293.4 151.7 L300.1 151.2 L307.4 155.1 L313.9 154.6 L316.6 158.2 L320.8 154.1 L327.2 156.0 L329.9 160.8 L334.6 161.5 L337.1 167.5 L342.9 161.8 L350.7 165.1 L353.6 168.7 L357.5 167.0 L360.2 172.6 L368.5 162.7 L370.9 167.8 L378.1 167.8 L385.0 170.9 L387.6 174.7 L394.1 168.0 L401.2 165.8 L404.5 168.2 L412.3 163.9 L414.1 166.3 L422.6 166.6 L424.8 162.7 L433.3 167.0 L436.6 172.1 L449.3 176.9 L452.7 181.0 L459.3 178.8 L464.0 180.7 L464.0 204.0 L464.0 248.8 L471.3 258.4 L471.4 268.0 L480.5 285.8 L481.1 295.1 L477.6 306.4 L474.3 310.9 L475.4 316.9 L473.1 321.5 L475.6 329.9 L467.8 345.5 L470.7 349.8 L465.3 350.0 L448.0 356.0 L441.9 352.7 L440.8 345.5 L436.4 350.5 L433.3 349.3 L431.7 355.5 L435.1 358.2 L435.7 366.3 L429.5 375.0 L419.5 385.8 L399.6 397.3 L397.6 395.3 L391.6 398.2 L391.4 395.6 L383.2 397.5 L379.4 392.0 L377.1 393.2 L385.8 404.5 L379.4 408.1 L373.4 405.9 L372.5 413.8 L365.1 422.0 L357.5 437.1 L352.6 452.9 L348.9 451.7 L348.0 457.5 L351.8 456.0 L350.0 467.5 L347.5 468.0 L347.3 474.5 L350.4 478.1 L351.3 491.3 L354.9 495.8 L355.8 504.2 L358.7 511.7 L348.6 516.2 L344.4 510.5 L336.6 508.3 L326.2 508.8 L317.4 501.6 L310.6 500.9 L305.6 495.1 L298.7 493.2 L293.9 487.7 L290.9 474.5 L284.9 466.6 L285.6 459.9 L282.9 452.7 L283.8 446.4 L279.6 439.5 L276.2 438.8 L270.5 432.5 L268.7 424.6 L263.8 417.4 L256.7 411.4 L253.3 398.2 L250.0 394.6 L245.7 384.1 L244.2 375.4 L240.0 369.2 L233.0 363.7 L231.3 359.9 L224.8 356.5 L219.7 346.9 L205.2 344.7 L196.5 345.2 L189.0 341.9 L187.4 346.4 L179.4 347.9 L173.4 357.0 L169.8 371.6 L167.8 371.8 L163.3 380.5 L157.8 380.7 L149.7 374.0 L129.1 363.2 L125.2 357.5 L117.2 351.9 L111.5 339.5 L111.2 328.2 L105.6 319.1 L104.3 311.2 L100.7 306.1 L87.8 298.7 L80.9 288.6 L75.2 285.0 L69.3 276.4 L60.9 271.8 L55.1 260.3 L50.2 257.9 L46.4 252.9 L47.3 248.6 L164.9 248.6 L164.9 204.7 L165.6 160.3 L165.8 51.5 L167.1 51.5 L206.5 51.5 Z" />
+              </g>
+              <g transform="translate(-310 155) scale(1.35)">
+                <path className="state-outline tennessee-outline" d="M662.4 51.7 L661.8 43.8 L669.1 45.7 L710.8 44.7 L747.5 46.4 L754.0 45.9 L778.7 47.4 L807.0 47.9 L807.5 47.1 L873.6 47.6 L872.2 57.9 L866.0 60.1 L861.8 68.2 L855.8 66.6 L842.8 75.0 L841.8 70.6 L837.3 73.5 L830.1 83.4 L821.5 85.8 L813.4 92.5 L804.3 92.7 L796.1 99.2 L793.6 106.4 L787.0 107.3 L786.1 117.6 L743.5 117.9 L685.4 117.2 L657.5 117.4 L648.6 117.4 L587.6 117.4 L590.9 116.2 L594.1 108.5 L593.6 98.0 L599.7 90.8 L600.8 84.1 L605.7 81.7 L606.8 73.5 L613.4 62.5 L613.2 51.7 L615.0 51.7 L617.2 51.7 L621.2 51.2 L662.4 51.7 Z" />
+              </g>
+            </svg>
 
-            <div className="location-map" aria-label="Map showing Brownwood Texas 100 mile service radius and digital service reach">
-              <svg className="location-lines" viewBox="0 0 820 460" aria-hidden="true">
-                <path className="map-road map-road-one" d="M56 250 C160 178 280 196 386 236 C516 286 612 246 776 116" />
-                <path className="map-road map-road-two" d="M112 360 C218 298 312 310 426 268 C560 218 656 238 768 302" />
-                <path className="map-road map-road-three" d="M122 118 C248 158 356 142 476 92 C588 46 686 66 778 126" />
-                <path className="map-river" d="M42 316 C158 262 254 266 342 296 C452 334 552 294 656 246 C724 214 778 214 814 230" />
-              </svg>
-
-              <div className="service-radius" aria-hidden="true">
-                <span className="radius-ring radius-ring-one" />
-                <span className="radius-ring radius-ring-two" />
-                <span className="radius-ring radius-ring-three" />
-              </div>
-
-              <div className="city-pin">
+            <div className="state-region texas-region">
+              <span className="state-name">Texas</span>
+              <span className="state-radius texas-radius" />
+              <span className="state-radius state-radius-soft texas-radius-soft" />
+              <div className="map-city-pin brownwood-pin">
                 <span className="pin-pulse" />
-                <MapPin className="h-9 w-9" />
+                <MapPin className="h-8 w-8" />
                 <strong>Brownwood</strong>
                 <small>100 mile radius</small>
               </div>
+            </div>
 
-              <span className="map-label label-kingsport">Early</span>
-              <span className="map-label label-bristol">Lake Brownwood</span>
-              <span className="map-label label-elizabeth">Bangs</span>
-              <span className="map-label label-greeneville">Coleman</span>
-
-              <div className="digital-reach">
-                <Sparkles className="h-5 w-5 text-[#2d8cff]" />
-                <span>Digital service beyond the radius</span>
+            <div className="state-region tennessee-region">
+              <span className="state-name">Tennessee</span>
+              <span className="state-radius tennessee-radius" />
+              <span className="state-radius state-radius-soft tennessee-radius-soft" />
+              <div className="map-city-pin johnson-pin">
+                <span className="pin-pulse" />
+                <MapPin className="h-8 w-8" />
+                <strong>Johnson City</strong>
+                <small>60 mile radius</small>
               </div>
             </div>
-          </div>
+
+            <div className="digital-reach">
+              <Sparkles className="h-5 w-5 text-[#2d8cff]" />
+              <span>Digital service beyond both circles</span>
+            </div>
+        </div>
         </div>
       </section>
 

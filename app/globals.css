@@ -64,10 +64,19 @@ svg {
   inset: 0;
   content: '';
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(circle at 50% 34%, black 0, black 48%, transparent 80%);
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.085) 0, rgba(45, 140, 255, 0.075) 34%, transparent 68%),
+    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px);
+  background-position:
+    0 0,
+    0 0,
+    0 0;
+  background-size:
+    64px 64px,
+    64px 64px,
+    64px 64px;
+  opacity: 0.95;
+  mask-image: radial-gradient(circle at 50% 34%, black 0, black 50%, transparent 82%);
 }
 
 .workflow-stage {

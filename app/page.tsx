@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import ConsultationModal from './consultation-modal';
+import MobileMenuClose from './mobile-menu-close';
 import {
   ArrowRight,
   BarChart3,
@@ -11,6 +12,7 @@ import {
   Instagram,
   Linkedin,
   MapPin,
+  Menu,
   MessageSquareText,
   MousePointer2,
   Play,
@@ -150,13 +152,14 @@ const trustedCarouselBrands = [...trustedBrands, ...trustedBrands];
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
+      <MobileMenuClose />
       <section className="hero-grid relative min-h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(40,132,255,0.16),transparent_34%),radial-gradient(circle_at_50%_95%,rgba(39,124,255,0.16),transparent_36%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0)_0%,rgba(5,5,5,0.42)_71%,#050505_100%)]" />
 
         <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050505]/72 backdrop-blur-xl">
-          <div className="mx-auto grid h-24 max-w-[1640px] grid-cols-[1fr_auto_1fr] items-center gap-6 px-5 sm:px-10">
-            <nav className="hidden items-center gap-10 text-[0.86rem] font-semibold uppercase tracking-[0.08em] text-white/84 lg:flex">
+          <div className="mx-auto grid h-24 w-full max-w-none grid-cols-[auto_1fr] items-center gap-6 px-5 sm:px-10 xl:max-w-[1640px] xl:grid-cols-[1fr_auto_1fr]">
+            <nav className="hidden items-center gap-9 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/84 xl:flex">
             {navItems.map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
                 {item}
@@ -164,61 +167,80 @@ export default function Home() {
             ))}
             </nav>
 
-            <a href="#" aria-label="Bishop Consulting home" className="justify-self-start lg:justify-self-center">
+            <a href="#" aria-label="Bishop Consulting home" className="justify-self-start xl:justify-self-center">
               <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="h-auto w-[220px] sm:w-[305px]" priority />
             </a>
 
-            <div className="hidden justify-end gap-7 text-white/90 md:flex">
-              <a
-                href="https://www.instagram.com/bishopconsultingllc/"
-                aria-label="Instagram"
-                className="transition hover:text-[#2d8cff]"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Instagram className="h-[18px] w-[18px]" />
-              </a>
-              <a href="#contact" aria-label="Facebook" className="transition hover:text-[#2d8cff]">
-                <Facebook className="h-[18px] w-[18px]" />
-              </a>
-              <a
-                href="https://x.com/bishopITconsult"
-                aria-label="X"
-                className="transition hover:text-[#2d8cff]"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <X className="h-[18px] w-[18px]" />
-              </a>
-              <a href="#contact" aria-label="LinkedIn" className="transition hover:text-[#2d8cff]">
-                <Linkedin className="h-[18px] w-[18px]" />
-              </a>
-              <a href="#contact" aria-label="YouTube" className="transition hover:text-[#2d8cff]">
-                <Youtube className="h-[18px] w-[18px]" />
-              </a>
+            <div className="relative flex justify-self-end items-center justify-end gap-4 text-white/90">
+              <div className="hidden justify-end gap-6 xl:flex">
+                {socialLinks.map(({ label, icon: Icon, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="transition hover:text-[#2d8cff]"
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                  >
+                    <Icon className="h-[17px] w-[17px]" />
+                  </a>
+                ))}
+              </div>
+
+              <details className="mobile-menu-details xl:hidden">
+                <summary
+                  aria-label="Open site navigation"
+                  className="mobile-menu-summary inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-[#121820] text-white shadow-[0_10px_34px_rgba(0,0,0,0.42)] transition hover:border-[#2d8cff] hover:bg-[#172232] hover:text-[#9fc9ff]"
+                >
+                  <Menu className="h-5 w-5" />
+                </summary>
+                <div className="mobile-menu-panel absolute right-0 top-14 w-[min(82vw,320px)] overflow-hidden rounded-2xl border border-white/16 bg-[#070b10] p-3 text-left shadow-[0_24px_80px_rgba(0,0,0,0.72)] backdrop-blur-xl">
+                  <nav className="grid gap-1 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-white/84">
+                    {navItems.map((item) => (
+                      <a key={item} href={`#${item.toLowerCase()}`} className="rounded-xl px-4 py-3 transition hover:bg-white/[0.07] hover:text-white">
+                        {item}
+                      </a>
+                    ))}
+                  </nav>
+                  <div className="mt-3 flex items-center gap-2 border-t border-white/10 px-3 pt-4 text-white/80">
+                    {socialLinks.map(({ label, icon: Icon, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        aria-label={label}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/12 transition hover:border-[#2d8cff] hover:text-[#9fc9ff]"
+                        target={href.startsWith('http') ? '_blank' : undefined}
+                        rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                      >
+                        <Icon className="h-4 w-4" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </details>
             </div>
           </div>
         </header>
 
         <div className="relative z-10 mx-0 flex min-h-screen w-full min-w-0 max-w-[430px] flex-col items-center px-5 pb-12 pt-44 text-center sm:mx-auto sm:max-w-[1560px] sm:px-8 sm:pt-52 lg:pt-56">
-          <h1 className="w-full min-w-0 max-w-[360px] text-[2.35rem] font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:max-w-[860px] sm:text-[4.65rem] sm:leading-[0.98] md:max-w-[980px] md:text-[5.35rem] lg:max-w-[1080px] lg:text-[6.05rem] xl:max-w-[1160px] xl:text-[6.75rem]">
+          <h1 className="w-full min-w-0 max-w-[350px] text-[2.2rem] font-semibold leading-[1.07] tracking-[-0.04em] text-white sm:max-w-[780px] sm:text-[4.15rem] sm:leading-[1] md:max-w-[900px] md:text-[4.8rem] lg:max-w-[990px] lg:text-[5.45rem] xl:max-w-[1060px] xl:text-[6.05rem]">
             <span className="block">Make operations</span>
             <span className="block">
               more <span className="text-[#2d8cff]">efficient</span> with
             </span>
             <span className="block">AI.</span>
           </h1>
-          <p className="mt-7 max-w-[350px] text-[1rem] leading-7 text-white/66 sm:max-w-[760px] sm:text-[1.25rem] sm:leading-8 lg:text-[1.34rem]">
+          <p className="mt-6 max-w-[340px] text-[0.96rem] leading-7 text-white/66 sm:max-w-[700px] sm:text-[1.12rem] sm:leading-8 lg:text-[1.2rem]">
             Bishop Consulting helps existing businesses reduce manual work, connect fragmented workflows, and create faster output with practical AI systems.
           </p>
 
-          <div className="mt-14 flex w-full max-w-[340px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5">
-            <ConsultationModal className="inline-flex h-[70px] items-center justify-center rounded-full bg-white px-12 text-[1.16rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[285px]" />
+          <div className="mt-11 flex w-full max-w-[320px] flex-col justify-center gap-3.5 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4">
+            <ConsultationModal className="inline-flex h-[58px] items-center justify-center rounded-full bg-white px-9 text-[1rem] font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.14)] transition hover:bg-[#dcecff] sm:min-w-[240px]" />
             <a
               href="#solutions"
-              className="inline-flex h-[70px] items-center justify-center gap-3 rounded-full border border-white/34 px-12 text-[1.16rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[285px]"
+              className="inline-flex h-[58px] items-center justify-center gap-2.5 rounded-full border border-white/34 px-9 text-[1rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[240px]"
             >
-              <Play className="h-5 w-5 fill-current" />
+              <Play className="h-4 w-4 fill-current" />
               See How It Works
             </a>
           </div>

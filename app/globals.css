@@ -138,6 +138,68 @@ svg {
   color: rgba(255, 255, 255, 0.58);
 }
 
+.trusted-strip {
+  width: 100%;
+  max-width: 980px;
+  margin-top: 106px;
+  text-align: center;
+}
+
+.trusted-strip p {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.trusted-carousel {
+  position: relative;
+  width: min(980px, 100%);
+  margin: 26px auto 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+.trusted-brand-row {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 44px;
+  animation: trustedMarquee 24s linear infinite;
+}
+
+.trusted-logo-item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.95rem, 1.45vw, 1.14rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 16px rgba(45, 140, 255, 0.12));
+}
+
+.trusted-logo-item img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: grayscale(1) brightness(1.8);
+}
+
+.trusted-logo-item span {
+  white-space: nowrap;
+}
+
+@keyframes trustedMarquee {
+  to {
+    transform: translateX(calc(-50% - 22px));
+  }
+}
+
 .painpoint-panel {
   position: relative;
   display: grid;
@@ -1179,67 +1241,195 @@ svg {
   font-weight: 600;
 }
 
-.architecture-map {
+.truck-automation {
   position: relative;
   min-height: 390px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(45, 140, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 72% 50%, rgba(45, 140, 255, 0.14), transparent 34%),
     linear-gradient(180deg, #fafafa, #f1f4f8);
 }
 
-.architecture-map svg {
+.warehouse-grid {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(circle at 58% 52%, black 0, rgba(0, 0, 0, 0.75) 58%, transparent 90%);
 }
 
-.architecture-map path {
-  fill: none;
-  stroke: rgba(45, 140, 255, 0.55);
-  stroke-width: 2;
-  stroke-dasharray: 8 10;
-  animation: dashFlow 8s linear infinite;
-}
-
-.system-core {
+.box-lane {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
+  right: 35%;
+  bottom: 128px;
+  left: 9%;
+  height: 74px;
+  border-bottom: 2px dashed rgba(45, 140, 255, 0.46);
+}
+
+.box-lane::after {
+  position: absolute;
+  right: -4px;
+  bottom: -7px;
+  width: 13px;
+  height: 13px;
+  content: '';
+  border-right: 2px solid rgba(45, 140, 255, 0.62);
+  border-bottom: 2px solid rgba(45, 140, 255, 0.62);
+  transform: rotate(-45deg);
+}
+
+.work-box {
+  position: absolute;
+  left: -92px;
+  bottom: 12px;
   display: grid;
-  width: 150px;
-  height: 150px;
+  width: 86px;
+  height: 54px;
   place-items: center;
-  border: 1px solid rgba(45, 140, 255, 0.55);
-  border-radius: 50%;
-  background: #050505;
-  color: #fff;
-  box-shadow: 0 20px 70px rgba(45, 140, 255, 0.3);
-  transform: translate(-50%, -50%);
+  border: 1px solid rgba(45, 140, 255, 0.42);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(45, 140, 255, 0.18) 48%, rgba(45, 140, 255, 0.18) 52%, transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(231, 238, 247, 0.98));
+  box-shadow: 0 16px 36px rgba(45, 140, 255, 0.12);
+  animation: loadTruck 4.4s linear infinite;
 }
 
-.system-core span {
-  margin-top: -30px;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.system-node {
+.work-box::before {
   position: absolute;
-  z-index: 2;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  padding: 10px 16px;
-  color: rgba(0, 0, 0, 0.72);
-  font-size: 0.84rem;
-  font-weight: 700;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
-  animation: floatNode 5s ease-in-out infinite;
+  top: 10px;
+  left: 12px;
+  width: 62px;
+  height: 1px;
+  content: '';
+  background: rgba(45, 140, 255, 0.22);
+}
+
+.work-box::after {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  width: 22px;
+  height: 14px;
+  content: '';
+  border-right: 1px solid rgba(45, 140, 255, 0.24);
+  border-left: 1px solid rgba(45, 140, 255, 0.24);
+  transform: translateX(-50%);
+}
+
+.truck-scene {
+  position: absolute;
+  right: 8%;
+  bottom: 92px;
+  width: min(42vw, 330px);
+  height: 170px;
+}
+
+.truck-bed {
+  position: absolute;
+  right: 82px;
+  bottom: 42px;
+  display: grid;
+  width: 205px;
+  height: 98px;
+  place-items: center;
+  border: 2px solid rgba(45, 140, 255, 0.64);
+  border-radius: 12px 4px 4px 12px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(45, 140, 255, 0.2), transparent 58%),
+    #050505;
+  color: #fff;
+  box-shadow: 0 20px 56px rgba(45, 140, 255, 0.22);
+}
+
+.truck-cab {
+  position: absolute;
+  right: 0;
+  bottom: 42px;
+  display: grid;
+  width: 94px;
+  height: 92px;
+  place-items: center;
+  border: 2px solid rgba(45, 140, 255, 0.64);
+  border-radius: 10px 28px 10px 4px;
+  background: linear-gradient(135deg, #0b0f15, #1c2632);
+  overflow: hidden;
+}
+
+.truck-window {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 42px;
+  height: 30px;
+  border: 1px solid rgba(45, 140, 255, 0.54);
+  border-radius: 8px 15px 6px 6px;
+  background: linear-gradient(135deg, rgba(45, 140, 255, 0.32), rgba(255, 255, 255, 0.08));
+}
+
+.truck-grille {
+  position: absolute;
+  right: 11px;
+  bottom: 18px;
+  width: 30px;
+  height: 16px;
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(90deg, rgba(45, 140, 255, 0.7) 0 3px, transparent 3px 7px),
+    rgba(255, 255, 255, 0.06);
+}
+
+.truck-wheel {
+  position: absolute;
+  bottom: 21px;
+  width: 42px;
+  height: 42px;
+  border: 8px solid #050505;
+  border-radius: 50%;
+  background: #2d8cff;
+  box-shadow: inset 0 0 0 6px #cfe5ff;
+  animation: wheelSpin 1.2s linear infinite;
+}
+
+.wheel-one {
+  left: 44px;
+}
+
+.wheel-two {
+  right: 44px;
+}
+
+.loaded-box {
+  position: absolute;
+  bottom: 12px;
+  width: 34px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  background: rgba(45, 140, 255, 0.34);
+}
+
+.box-a {
+  left: 18px;
+}
+
+.box-b {
+  left: 58px;
+  bottom: 18px;
+}
+
+.box-c {
+  left: 98px;
+}
+
+.box-d {
+  left: 136px;
+  bottom: 18px;
 }
 
 .step-card {
@@ -1262,44 +1452,104 @@ svg {
   line-height: 1.7;
 }
 
+.insights-layout {
+  display: grid;
+  max-width: 1420px;
+  align-items: start;
+  gap: 56px;
+}
+
+@media (min-width: 1180px) {
+  .insights-layout {
+    grid-template-columns: minmax(760px, 1fr) minmax(420px, 0.68fr);
+  }
+}
+
 .savings-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
+  align-self: start;
 }
 
 .saving-card {
-  min-height: 300px;
+  min-height: 360px;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
-  padding: 32px;
+  padding: 30px 26px;
 }
 
 .saving-card strong {
-  display: block;
-  margin-top: 70px;
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  display: flex;
+  max-width: 100%;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 56px;
+  font-size: clamp(2.55rem, 3vw, 3.25rem);
   font-weight: 700;
   letter-spacing: -0.05em;
+  line-height: 0.98;
+  white-space: nowrap;
+}
+
+.saving-card strong em {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(0.88rem, 1vw, 1.05rem);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.saving-card-compact strong {
+  gap: 6px;
+  font-size: clamp(2rem, 2.45vw, 2.72rem);
+  letter-spacing: -0.06em;
+}
+
+.saving-card-compact strong em {
+  font-size: clamp(0.82rem, 0.9vw, 0.94rem);
 }
 
 .saving-card span {
   display: block;
-  margin-top: 16px;
-  color: rgba(255, 255, 255, 0.58);
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.saving-card p {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.insights-copy {
+  max-width: 520px;
+  justify-self: end;
 }
 
 .solution-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 18px 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 1.05rem;
   font-weight: 600;
+}
+
+.solution-row svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
 }
 
 .location-stack {
@@ -1983,6 +2233,42 @@ svg {
   }
 }
 
+@keyframes loadTruck {
+  0% {
+    left: -92px;
+    opacity: 0;
+    transform: translateY(0) scale(0.94);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  72% {
+    left: calc(100% - 8px);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  88% {
+    left: calc(100% + 18px);
+    opacity: 0.8;
+    transform: translateY(-22px) scale(0.72);
+  }
+
+  100% {
+    left: calc(100% + 26px);
+    opacity: 0;
+    transform: translateY(-26px) scale(0.62);
+  }
+}
+
+@keyframes wheelSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes rotateRequests {
   0%,
   20% {
@@ -2379,15 +2665,105 @@ svg {
     display: none;
   }
 
+  .insights-layout {
+    max-width: 760px;
+    gap: 44px;
+  }
+
   .savings-grid {
     grid-template-columns: 1fr;
     max-width: 520px;
   }
+
+  .insights-copy {
+    max-width: 620px;
+    justify-self: start;
+  }
+
+  .truck-automation {
+    min-height: 460px;
+  }
+
+  .box-lane {
+    right: 28%;
+    bottom: 150px;
+    left: 6%;
+  }
+
+  .truck-scene {
+    right: 0;
+    bottom: 96px;
+    transform: scale(0.82);
+    transform-origin: right bottom;
+  }
+
 }
 
 @media (max-width: 640px) {
   .hero-grid::before {
     background-size: 44px 44px;
+  }
+
+  .trusted-strip {
+    margin-top: 64px;
+  }
+
+  .trusted-carousel {
+    width: min(360px, 100%);
+  }
+
+  .trusted-brand-row {
+    gap: 28px;
+  }
+
+  .trusted-logo-item {
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .trusted-logo-item img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .insights-layout {
+    gap: 34px;
+  }
+
+  .saving-card {
+    min-height: 0;
+    padding: 26px;
+  }
+
+  .saving-card strong {
+    margin-top: 36px;
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+  }
+
+  .saving-card strong em {
+    font-size: 0.95rem;
+  }
+
+  .truck-automation {
+    min-height: 420px;
+  }
+
+  .box-lane {
+    right: 22%;
+    bottom: 172px;
+    left: 4%;
+  }
+
+  .work-box {
+    width: 72px;
+    height: 48px;
+    font-size: 0.68rem;
+  }
+
+  .truck-scene {
+    right: -34px;
+    bottom: 108px;
+    transform: scale(0.68);
   }
 
   .painpoint-panel {
@@ -2581,8 +2957,8 @@ svg {
     border-radius: 8px;
   }
 
-  .signal-panel,
-  .architecture-map,
+.signal-panel,
+  .truck-automation,
   .step-card,
   .saving-card {
     border-radius: 8px;
@@ -2597,18 +2973,22 @@ svg {
     gap: 8px;
   }
 
-  .architecture-map {
+  .truck-automation {
     min-height: 520px;
   }
 
-  .architecture-map svg {
-    opacity: 0.55;
+  .box-lane {
+    right: 26%;
+    left: 7%;
   }
 
-  .system-core {
-    width: 132px;
-    height: 132px;
+  .truck-scene {
+    right: 4%;
+    width: 300px;
+    transform: scale(0.9);
+    transform-origin: right bottom;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

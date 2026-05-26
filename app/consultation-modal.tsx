@@ -16,6 +16,16 @@ export default function ConsultationModal({ className, label = 'Book a Consultat
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
+  function openModal() {
+    setStatus('idle');
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setStatus('idle');
+    setIsOpen(false);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -45,8 +55,7 @@ export default function ConsultationModal({ className, label = 'Book a Consultat
       form.reset();
       setStatus('sent');
       window.setTimeout(() => {
-        setIsOpen(false);
-        setStatus('idle');
+        closeModal();
       }, 1600);
     } catch {
       setStatus('error');
@@ -55,16 +64,16 @@ export default function ConsultationModal({ className, label = 'Book a Consultat
 
   return (
     <>
-      <button type="button" className={className} onClick={() => setIsOpen(true)}>
+      <button type="button" className={className} onClick={openModal}>
         {label}
         {showArrow ? <ArrowRight className="h-5 w-5" /> : null}
       </button>
 
       {isOpen ? (
         <div className="consultation-modal" role="dialog" aria-modal="true" aria-labelledby="consultation-title">
-          <button className="consultation-backdrop" type="button" aria-label="Close consultation form" onClick={() => setIsOpen(false)} />
+          <button className="consultation-backdrop" type="button" aria-label="Close consultation form" onClick={closeModal} />
           <div className="consultation-dialog">
-            <button className="consultation-close" type="button" aria-label="Close consultation form" onClick={() => setIsOpen(false)}>
+            <button className="consultation-close" type="button" aria-label="Close consultation form" onClick={closeModal}>
               <X className="h-5 w-5" />
             </button>
 

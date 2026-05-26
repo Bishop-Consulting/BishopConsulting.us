@@ -3,7 +3,6 @@ import ConsultationModal from './consultation-modal';
 import {
   ArrowRight,
   BarChart3,
-  Bot,
   BrainCircuit,
   CheckCircle2,
   Clock3,
@@ -59,26 +58,44 @@ const workflowSteps = [
   }
 ];
 
-const systemNodes = [
-  { label: 'Calls', x: '7%', y: '25%' },
-  { label: 'Jobs', x: '18%', y: '70%' },
-  { label: 'Invoices', x: '39%', y: '18%' },
-  { label: 'Schedule', x: '58%', y: '74%' },
-  { label: 'Reports', x: '78%', y: '30%' },
-  { label: 'Team', x: '88%', y: '66%' }
+const truckBoxes = [
+  { label: 'Calls', delay: '0s' },
+  { label: 'Invoices', delay: '1.1s' },
+  { label: 'Jobs', delay: '2.2s' },
+  { label: 'Reports', delay: '3.3s' }
 ];
 
 const savings = [
-  { value: '40%', label: 'less repetitive admin drag', icon: Clock3 },
-  { value: '2-5x', label: 'faster workflow turnaround', icon: Zap },
-  { value: '24/7', label: 'structured operational visibility', icon: ShieldCheck }
+  {
+    value: '5-15',
+    metric: 'hrs/week',
+    label: 'time returned',
+    detail: 'reclaimed from repetitive admin, scheduling, intake, reporting, and follow-up',
+    icon: Clock3
+  },
+  {
+    value: '30-60%',
+    metric: 'faster',
+    label: 'cycle time',
+    detail: 'typical response and handoff opportunity across quotes, approvals, updates, and routing',
+    icon: Zap,
+    compact: true
+  },
+  {
+    value: '$1k-$10k+',
+    metric: '/mo',
+    label: 'savings opportunity',
+    detail: 'avoidable drag we look for in missed follow-up, duplicate entry, and slow workflow movement',
+    icon: ShieldCheck,
+    compact: true
+  }
 ];
 
 const solutionRows = [
-  'Automated intake, routing, and follow-up',
-  'AI-assisted reporting and executive summaries',
-  'Internal knowledge systems for faster answers',
-  'Workflow copilots that keep teams in motion'
+  'Missed or delayed follow-ups after calls, quotes, or form submissions',
+  'Manual data entry between email, CRM, invoices, spreadsheets, and job systems',
+  'Reports, summaries, and status updates that take hours to prepare',
+  'Bottlenecks where work waits on one person to move information'
 ];
 
 const workflowPhrases = [
@@ -111,6 +128,25 @@ const socialLinks = [
   { label: 'YouTube', icon: Youtube, href: '#contact' }
 ];
 
+const microsoftLogo =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M3 3h12v12H3zM17 3h12v12H17zM3 17h12v12H3zM17 17h12v12H17z'/%3E%3C/svg%3E";
+const excelLogo =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M4 5h15v22H4z'/%3E%3Cpath fill='%23050505' d='m8 11 3 5-3.4 5h3.2l1.8-3.1 1.8 3.1h3.3L14.2 16l3.2-5h-3.1l-1.6 2.8L11.1 11z'/%3E%3Cpath fill='%23fff' d='M20 7h8v4h-8zm0 6h8v4h-8zm0 6h8v4h-8z'/%3E%3C/svg%3E";
+const jobberLogo =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M7 6h18v14.5c0 4-2.9 7-7 7h-2.5v-5H18c1.1 0 2-.8 2-2V11H7z'/%3E%3Cpath fill='%23fff' d='M7 21h5v5H7z'/%3E%3C/svg%3E";
+
+const trustedBrands = [
+  { name: 'Microsoft 365', logo: microsoftLogo },
+  { name: 'Excel', logo: excelLogo },
+  { name: 'Google Workspace', logo: 'https://cdn.simpleicons.org/google/FFFFFF' },
+  { name: 'QuickBooks', logo: 'https://cdn.simpleicons.org/quickbooks/FFFFFF' },
+  { name: 'HubSpot', logo: 'https://cdn.simpleicons.org/hubspot/FFFFFF' },
+  { name: 'Zapier', logo: 'https://cdn.simpleicons.org/zapier/FFFFFF' },
+  { name: 'Jobber', logo: jobberLogo }
+];
+
+const trustedCarouselBrands = [...trustedBrands, ...trustedBrands];
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
@@ -119,8 +155,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0)_0%,rgba(5,5,5,0.42)_71%,#050505_100%)]" />
 
         <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050505]/72 backdrop-blur-xl">
-          <div className="mx-auto grid h-20 max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-5 px-5 sm:px-8">
-            <nav className="hidden items-center gap-8 text-[0.78rem] font-medium uppercase tracking-[0.08em] text-white/84 lg:flex">
+          <div className="mx-auto grid h-24 max-w-[1640px] grid-cols-[1fr_auto_1fr] items-center gap-6 px-5 sm:px-10">
+            <nav className="hidden items-center gap-10 text-[0.86rem] font-semibold uppercase tracking-[0.08em] text-white/84 lg:flex">
             {navItems.map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
                 {item}
@@ -129,10 +165,10 @@ export default function Home() {
             </nav>
 
             <a href="#" aria-label="Bishop Consulting home" className="justify-self-start lg:justify-self-center">
-              <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="h-auto w-[190px] sm:w-[255px]" priority />
+              <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="h-auto w-[220px] sm:w-[305px]" priority />
             </a>
 
-            <div className="hidden justify-end gap-6 text-white/90 md:flex">
+            <div className="hidden justify-end gap-7 text-white/90 md:flex">
               <a
                 href="https://www.instagram.com/bishopconsultingllc/"
                 aria-label="Instagram"
@@ -164,71 +200,41 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="relative z-10 mx-0 flex min-h-screen w-full min-w-0 max-w-[390px] flex-col items-center px-5 pb-12 pt-40 text-center sm:mx-auto sm:max-w-[1420px] sm:px-8 sm:pt-44 lg:pt-48">
-          <h1 className="w-full min-w-0 max-w-[340px] text-[2.18rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:max-w-[900px] sm:text-[5.5rem] sm:leading-[0.98] lg:text-[6.55rem]">
+        <div className="relative z-10 mx-0 flex min-h-screen w-full min-w-0 max-w-[430px] flex-col items-center px-5 pb-12 pt-44 text-center sm:mx-auto sm:max-w-[1560px] sm:px-8 sm:pt-52 lg:pt-56">
+          <h1 className="w-full min-w-0 max-w-[380px] text-[2.55rem] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[1080px] sm:text-[6.35rem] sm:leading-[0.96] lg:max-w-[1220px] lg:text-[7.6rem]">
             <span className="block">Make operations</span>
             <span className="block">
               more <span className="text-[#2d8cff]">efficient</span> with
             </span>
             <span className="block">AI.</span>
           </h1>
-          <p className="mt-7 max-w-[320px] text-[0.98rem] leading-7 text-white/62 sm:max-w-[770px] sm:text-[1.35rem] sm:leading-8">
+          <p className="mt-8 max-w-[350px] text-[1.05rem] leading-8 text-white/66 sm:max-w-[850px] sm:text-[1.52rem] sm:leading-9">
             Bishop Consulting helps existing businesses reduce manual work, connect fragmented workflows, and create faster output with practical AI systems.
           </p>
 
-          <div className="mt-12 flex w-full max-w-[320px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5">
-            <ConsultationModal className="inline-flex h-16 items-center justify-center rounded-full bg-white px-10 text-[1.08rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[250px]" />
+          <div className="mt-14 flex w-full max-w-[340px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5">
+            <ConsultationModal className="inline-flex h-[70px] items-center justify-center rounded-full bg-white px-12 text-[1.16rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[285px]" />
             <a
               href="#solutions"
-              className="inline-flex h-16 items-center justify-center gap-3 rounded-full border border-white/34 px-10 text-[1.08rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[250px]"
+              className="inline-flex h-[70px] items-center justify-center gap-3 rounded-full border border-white/34 px-12 text-[1.16rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[285px]"
             >
               <Play className="h-5 w-5 fill-current" />
               See How It Works
             </a>
           </div>
 
-          <div className="workflow-stage mt-28 w-full min-w-0 max-w-[350px] sm:max-w-[1240px]">
-            <div className="workflow-row">
-              <div className="flow-card input-card">
-                <div className="icon-strip">
-                  {inputs.map(({ label, icon: Icon }) => (
-                    <div key={label} className="icon-unit" title={label}>
-                      <Icon className="h-6 w-6" />
-                    </div>
-                  ))}
-                </div>
-                <p>1. Existing Workflow</p>
+          <div className="trusted-strip" aria-label="Trusted tools businesses already use">
+            <p>Built around 9,000+ Applications</p>
+            <div className="trusted-carousel">
+              <div className="trusted-brand-row">
+                {trustedCarouselBrands.map((brand, index) => (
+                  <span key={`${brand.name}-${index}`} className="trusted-logo-item">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={brand.logo} alt={brand.name} />
+                    <span>{brand.name}</span>
+                  </span>
+                ))}
               </div>
-
-              <div className="flow-line" />
-
-              <div className="flow-card ai-card">
-                <BrainCircuit className="mx-auto h-12 w-12 text-[#2d8cff]" strokeWidth={1.8} />
-                <p>2. Artificial Intelligence Optimization</p>
-              </div>
-
-              <div className="flow-line" />
-
-              <div className="flow-card output-card">
-                <div className="check-strip">
-                  {outcomes.map((item) => (
-                    <span key={item} title={item}>
-                      <CheckCircle2 className="h-7 w-7" />
-                    </span>
-                  ))}
-                </div>
-                <p>3. More Efficient Output</p>
-              </div>
-            </div>
-
-            <div className="orbit-field" aria-hidden="true">
-              <span className="orbit orbit-one" />
-              <span className="orbit orbit-two" />
-              <span className="orbit orbit-three" />
-              <span className="pulse-dot dot-one" />
-              <span className="pulse-dot dot-two" />
-              <span className="pulse-dot dot-three" />
-              <span className="pulse-dot dot-four" />
             </div>
           </div>
 
@@ -336,7 +342,7 @@ export default function Home() {
               Service Map
             </h2>
             <p className="mt-7 max-w-[540px] text-lg leading-8 text-white/58">
-              We physically serve businesses near Johnson City, Tennessee and Brownwood, Texas, with remote-first workflow support available wherever your team operates.
+              We physically serve businesses near Johnson City, Tennessee and Brownwood, Texas, with remote workflow support available wherever your team operates.
             </p>
             <div className="location-proof">
               <span>Johnson City area: 60 mile radius</span>
@@ -409,24 +415,28 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="architecture-map">
-              <div className="system-core">
-                <Bot className="h-12 w-12" />
-                <span>AI Ops Core</span>
+            <div className="truck-automation" aria-label="Animation showing repetitive work boxes moving into an automated service truck">
+              <div className="warehouse-grid" aria-hidden="true" />
+              <div className="box-lane">
+                {truckBoxes.map((box) => (
+                  <span key={box.label} className="work-box" style={{ animationDelay: box.delay }} />
+                ))}
               </div>
-              {systemNodes.map((node) => (
-                <div key={node.label} className="system-node" style={{ left: node.x, top: node.y }}>
-                  {node.label}
+
+              <div className="truck-scene">
+                <div className="truck-bed">
+                  <div className="loaded-box box-a" />
+                  <div className="loaded-box box-b" />
+                  <div className="loaded-box box-c" />
+                  <div className="loaded-box box-d" />
                 </div>
-              ))}
-              <svg viewBox="0 0 720 390" aria-hidden="true">
-                <path d="M360 194 C180 70 90 82 55 95" />
-                <path d="M360 194 C210 220 128 282 118 314" />
-                <path d="M360 194 C330 92 296 64 282 72" />
-                <path d="M360 194 C442 253 429 312 421 326" />
-                <path d="M360 194 C492 92 585 93 617 105" />
-                <path d="M360 194 C532 224 618 272 650 296" />
-              </svg>
+                <div className="truck-cab">
+                  <span className="truck-window" />
+                  <span className="truck-grille" />
+                </div>
+                <span className="truck-wheel wheel-one" />
+                <span className="truck-wheel wheel-two" />
+              </div>
             </div>
           </div>
 
@@ -463,21 +473,28 @@ export default function Home() {
       </section>
 
       <section id="insights" className="bg-[#050505] px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1480px] gap-16 lg:grid-cols-[1.38fr_0.82fr] lg:items-center">
+        <div className="insights-layout mx-auto">
           <div className="savings-grid">
-            {savings.map(({ value, label, icon: Icon }) => (
-              <div key={label} className="saving-card">
+            {savings.map(({ value, metric, label, detail, icon: Icon, compact }) => (
+              <div key={label} className={`saving-card${compact ? ' saving-card-compact' : ''}`}>
                 <Icon className="h-6 w-6 text-[#2d8cff]" />
-                <strong>{value}</strong>
+                <strong>
+                  {value}
+                  <em>{metric}</em>
+                </strong>
                 <span>{label}</span>
+                <p>{detail}</p>
               </div>
             ))}
           </div>
 
-          <div>
+          <div className="insights-copy">
             <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.2rem]">
               Efficiency should be visible in the numbers.
             </h2>
+            <p className="mt-6 max-w-[620px] text-lg leading-8 text-white/58">
+              We map your current workflow first, then estimate the time, cost, and response-time savings before building.
+            </p>
             <div className="mt-8 space-y-4">
               {solutionRows.map((row) => (
                 <div key={row} className="solution-row">
@@ -486,6 +503,11 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <ConsultationModal
+              label="Book a Workflow Assessment"
+              showArrow
+              className="mt-8 inline-flex h-14 items-center justify-center gap-3 rounded-full bg-white px-7 text-[0.98rem] font-semibold text-black transition hover:bg-[#dcecff]"
+            />
           </div>
         </div>
       </section>

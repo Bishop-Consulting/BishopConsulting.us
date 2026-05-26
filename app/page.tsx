@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ConsultationModal from './consultation-modal';
 import {
   ArrowRight,
   BarChart3,
@@ -10,6 +11,7 @@ import {
   FileText,
   Instagram,
   Linkedin,
+  MapPin,
   MessageSquareText,
   MousePointer2,
   Play,
@@ -23,7 +25,7 @@ import {
 
 const logoSrc = '/BishopConsulting - White.png';
 
-const navItems = ['About', 'Solutions', 'Insights', 'Contact'];
+const navItems = ['About', 'Solutions', 'Insights', 'Location', 'Contact'];
 
 const inputs = [
   { label: 'Documents', icon: FileText },
@@ -41,27 +43,27 @@ const painpointChecks = [
 
 const workflowSteps = [
   {
-    title: 'Map the existing operation',
-    body: 'Find the repetitive work, handoffs, approvals, and reporting loops that slow the business down.',
+    title: 'Find the repeat work',
+    body: 'Identify the calls, estimates, scheduling, invoicing, follow-up, and reporting that your team handles again and again.',
     icon: MousePointer2
   },
   {
-    title: 'Build the AI operating layer',
-    body: 'Connect data, documents, systems, and team rules into practical automation your people can actually use.',
+    title: 'Build around your business',
+    body: 'Connect the tools and rules you already use, whether you run a trade crew, local service company, office team, or growing operation.',
     icon: BrainCircuit
   },
   {
-    title: 'Measure the time returned',
-    body: 'Track cycle time, rework, throughput, and savings so leadership sees where efficiency is compounding.',
+    title: 'Give the hours back',
+    body: 'Reduce manual task work so people can spend more time serving customers, finishing jobs, and moving the business forward.',
     icon: BarChart3
   }
 ];
 
 const systemNodes = [
-  { label: 'CRM', x: '7%', y: '25%' },
-  { label: 'Email', x: '18%', y: '70%' },
-  { label: 'Files', x: '39%', y: '18%' },
-  { label: 'ERP', x: '58%', y: '74%' },
+  { label: 'Calls', x: '7%', y: '25%' },
+  { label: 'Jobs', x: '18%', y: '70%' },
+  { label: 'Invoices', x: '39%', y: '18%' },
+  { label: 'Schedule', x: '58%', y: '74%' },
   { label: 'Reports', x: '78%', y: '30%' },
   { label: 'Team', x: '88%', y: '66%' }
 ];
@@ -79,7 +81,12 @@ const solutionRows = [
   'Workflow copilots that keep teams in motion'
 ];
 
-const workflowPhrase = 'Real Estate Comps to Clients';
+const workflowPhrases = [
+  'Real Estate Comps to Clients',
+  'Lead Intake to Follow-Up',
+  'Invoices to Approvals',
+  'Daily Ops to Summary'
+];
 
 const workflowApps = [
   { label: 'Docs', icon: FileText, className: 'docs-node' },
@@ -94,7 +101,7 @@ const workflowOutputs = [
   { label: 'Follow-up', icon: MessageSquareText, className: 'follow-node' }
 ];
 
-const footerLinks = ['About', 'Solutions', 'Insights'];
+const footerLinks = ['About', 'Solutions', 'Insights', 'Location'];
 
 const socialLinks = [
   { label: 'Instagram', icon: Instagram },
@@ -158,12 +165,7 @@ export default function Home() {
           </p>
 
           <div className="mt-12 flex w-full max-w-[320px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5">
-            <a
-              href="#contact"
-              className="inline-flex h-16 items-center justify-center rounded-full bg-white px-10 text-[1.08rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[250px]"
-            >
-              Book a Consultation
-            </a>
+            <ConsultationModal className="inline-flex h-16 items-center justify-center rounded-full bg-white px-10 text-[1.08rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[250px]" />
             <a
               href="#solutions"
               className="inline-flex h-16 items-center justify-center gap-3 rounded-full border border-white/34 px-10 text-[1.08rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[250px]"
@@ -227,7 +229,11 @@ export default function Home() {
           <div className="relative z-10">
             <h2 className="max-w-[760px] text-[3.05rem] font-semibold leading-[0.98] tracking-[-0.04em] sm:text-[4.55rem] lg:text-[5.45rem] xl:text-[5.85rem]">
               Agentic workflows for
-              <span className="workflow-phrase">{workflowPhrase}</span>
+              <span className="workflow-phrase" aria-label="Rotating workflow examples">
+                {workflowPhrases.map((phrase) => (
+                  <span key={phrase}>{phrase}</span>
+                ))}
+              </span>
             </h2>
             <p className="mt-8 max-w-[640px] text-lg leading-8 text-white/58 sm:text-xl">
               One request can pull context from docs, sheets, CRM, and email, then route the next output without your team moving every piece by hand.
@@ -316,10 +322,10 @@ export default function Home() {
           <div className="grid gap-16 lg:grid-cols-[0.95fr_1.25fr] lg:items-start">
             <div>
               <h2 className="max-w-[620px] text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.15rem] xl:text-[4.45rem]">
-                Simple systems. Visible savings.
+                AI is not just for tech companies.
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-black/58">
-                The work is not about adding a shiny tool. It is about changing the operating model so teams spend less time moving information and more time acting on it.
+                This technology is built for repetitive, task-based functions in any business, from electricians and plumbers to local service teams that need less admin drag and faster follow-up.
               </p>
             </div>
 
@@ -404,6 +410,105 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="location" className="location-section relative overflow-hidden bg-[#050505] px-5 py-24 text-white sm:px-8 lg:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_48%,rgba(45,140,255,0.16),transparent_34%),radial-gradient(circle_at_38%_62%,rgba(62,237,123,0.08),transparent_30%)]" />
+        <div className="location-stack mx-auto max-w-[1380px]">
+          <div className="location-block grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+            <div className="relative z-10">
+              <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem]">
+                Headquarters
+              </h2>
+              <p className="mt-7 max-w-[520px] text-lg leading-8 text-white/58">
+                Based in Johnson City, Tennessee. We physically serve businesses within a 40-mile radius although exceptions can be made and support digital workflow projects wherever your team operates.
+              </p>
+              <div className="location-proof">
+                <span>Physical service radius: 40 miles</span>
+                <span>Digital service: remote-first delivery</span>
+              </div>
+            </div>
+
+            <div className="location-map" aria-label="Map showing Johnson City 40 mile service radius and digital service reach">
+              <svg className="location-lines" viewBox="0 0 820 460" aria-hidden="true">
+                <path className="map-road map-road-one" d="M48 310 C176 236 274 244 388 282 C512 323 628 284 774 170" />
+                <path className="map-road map-road-two" d="M92 150 C234 206 342 188 454 122 C556 62 658 83 760 126" />
+                <path className="map-road map-road-three" d="M180 414 C250 322 326 276 420 244 C536 206 632 222 746 272" />
+                <path className="map-river" d="M36 224 C154 178 246 190 318 222 C402 260 494 250 586 206 C654 174 728 170 802 202" />
+              </svg>
+
+              <div className="service-radius" aria-hidden="true">
+                <span className="radius-ring radius-ring-one" />
+                <span className="radius-ring radius-ring-two" />
+                <span className="radius-ring radius-ring-three" />
+              </div>
+
+              <div className="city-pin">
+                <span className="pin-pulse" />
+                <MapPin className="h-9 w-9" />
+                <strong>Johnson City</strong>
+                <small>40 mile radius</small>
+              </div>
+
+              <span className="map-label label-kingsport">Kingsport</span>
+              <span className="map-label label-bristol">Bristol</span>
+              <span className="map-label label-elizabeth">Elizabethton</span>
+              <span className="map-label label-greeneville">Greeneville</span>
+
+              <div className="digital-reach">
+                <Sparkles className="h-5 w-5 text-[#2d8cff]" />
+                <span>Digital service beyond the radius</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="location-block grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+            <div className="relative z-10">
+              <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem]">
+                Texas Location
+              </h2>
+              <p className="mt-7 max-w-[520px] text-lg leading-8 text-white/58">
+                Also serving from Brownwood, Texas with a 100-mile physical service radius and remote-first support for workflow automation projects beyond the local area.
+              </p>
+              <div className="location-proof">
+                <span>Brownwood area service radius: 100 miles</span>
+                <span>Digital service: available anywhere</span>
+              </div>
+            </div>
+
+            <div className="location-map" aria-label="Map showing Brownwood Texas 100 mile service radius and digital service reach">
+              <svg className="location-lines" viewBox="0 0 820 460" aria-hidden="true">
+                <path className="map-road map-road-one" d="M56 250 C160 178 280 196 386 236 C516 286 612 246 776 116" />
+                <path className="map-road map-road-two" d="M112 360 C218 298 312 310 426 268 C560 218 656 238 768 302" />
+                <path className="map-road map-road-three" d="M122 118 C248 158 356 142 476 92 C588 46 686 66 778 126" />
+                <path className="map-river" d="M42 316 C158 262 254 266 342 296 C452 334 552 294 656 246 C724 214 778 214 814 230" />
+              </svg>
+
+              <div className="service-radius" aria-hidden="true">
+                <span className="radius-ring radius-ring-one" />
+                <span className="radius-ring radius-ring-two" />
+                <span className="radius-ring radius-ring-three" />
+              </div>
+
+              <div className="city-pin">
+                <span className="pin-pulse" />
+                <MapPin className="h-9 w-9" />
+                <strong>Brownwood</strong>
+                <small>100 mile radius</small>
+              </div>
+
+              <span className="map-label label-kingsport">Early</span>
+              <span className="map-label label-bristol">Lake Brownwood</span>
+              <span className="map-label label-elizabeth">Bangs</span>
+              <span className="map-label label-greeneville">Coleman</span>
+
+              <div className="digital-reach">
+                <Sparkles className="h-5 w-5 text-[#2d8cff]" />
+                <span>Digital service beyond the radius</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="relative bg-[#050505] px-5 py-24 text-white sm:px-8 lg:py-32">
         <div className="mx-auto max-w-[1100px] text-center">
           <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="mx-auto h-auto w-[260px] sm:w-[360px]" />
@@ -413,13 +518,11 @@ export default function Home() {
           <p className="mx-auto mt-7 max-w-[690px] text-lg leading-8 text-white/58">
             Bring us an existing workflow, department, or operating bottleneck. We will map the savings opportunity and design the system around measurable output.
           </p>
-          <a
-            href="mailto:hello@bishopconsulting.us"
+          <ConsultationModal
+            label="Start the Conversation"
+            showArrow
             className="mt-10 inline-flex h-14 items-center justify-center gap-3 rounded-full bg-white px-8 text-[0.98rem] font-semibold text-black transition hover:bg-[#dcecff]"
-          >
-            Start the Conversation
-            <ArrowRight className="h-5 w-5" />
-          </a>
+          />
         </div>
       </section>
 
@@ -446,8 +549,8 @@ export default function Home() {
           </nav>
 
           <div>
-            <a href="mailto:hello@bishopconsulting.us" className="text-sm font-semibold text-white transition hover:text-[#9fc9ff]">
-              hello@bishopconsulting.us
+            <a href="mailto:service@bishopconsulting.us" className="text-sm font-semibold text-white transition hover:text-[#9fc9ff]">
+              service@bishopconsulting.us
             </a>
             <div className="mt-5 flex flex-wrap gap-3">
               {socialLinks.map(({ label, icon: Icon }) => (

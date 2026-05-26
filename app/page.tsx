@@ -201,14 +201,14 @@ export default function Home() {
         </header>
 
         <div className="relative z-10 mx-0 flex min-h-screen w-full min-w-0 max-w-[430px] flex-col items-center px-5 pb-12 pt-44 text-center sm:mx-auto sm:max-w-[1560px] sm:px-8 sm:pt-52 lg:pt-56">
-          <h1 className="w-full min-w-0 max-w-[380px] text-[2.55rem] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[1080px] sm:text-[6.35rem] sm:leading-[0.96] lg:max-w-[1220px] lg:text-[7.6rem]">
+          <h1 className="w-full min-w-0 max-w-[360px] text-[2.35rem] font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:max-w-[860px] sm:text-[4.65rem] sm:leading-[0.98] md:max-w-[980px] md:text-[5.35rem] lg:max-w-[1080px] lg:text-[6.05rem] xl:max-w-[1160px] xl:text-[6.75rem]">
             <span className="block">Make operations</span>
             <span className="block">
               more <span className="text-[#2d8cff]">efficient</span> with
             </span>
             <span className="block">AI.</span>
           </h1>
-          <p className="mt-8 max-w-[350px] text-[1.05rem] leading-8 text-white/66 sm:max-w-[850px] sm:text-[1.52rem] sm:leading-9">
+          <p className="mt-7 max-w-[350px] text-[1rem] leading-7 text-white/66 sm:max-w-[760px] sm:text-[1.25rem] sm:leading-8 lg:text-[1.34rem]">
             Bishop Consulting helps existing businesses reduce manual work, connect fragmented workflows, and create faster output with practical AI systems.
           </p>
 

@@ -33,6 +33,12 @@ const inputs = [
 
 const outcomes = ['Faster approvals', 'Cleaner reporting', 'Lower manual cost'];
 
+const painpointChecks = [
+  'Manual work that slows the team down',
+  'Data scattered across too many tools',
+  'Follow-up and reporting that take too long'
+];
+
 const workflowSteps = [
   {
     title: 'Map the existing operation',
@@ -61,7 +67,7 @@ const systemNodes = [
 ];
 
 const savings = [
-  { value: '20-40%', label: 'less repetitive admin drag', icon: Clock3 },
+  { value: '40%', label: 'less repetitive admin drag', icon: Clock3 },
   { value: '2-5x', label: 'faster workflow turnaround', icon: Zap },
   { value: '24/7', label: 'structured operational visibility', icon: ShieldCheck }
 ];
@@ -73,12 +79,7 @@ const solutionRows = [
   'Workflow copilots that keep teams in motion'
 ];
 
-const workflowPhrases = [
-  'Real Estate Comps to Clients',
-  'Lead Intake to Follow-Up',
-  'Invoices to Approvals',
-  'Daily Ops to Summary'
-];
+const workflowPhrase = 'Real Estate Comps to Clients';
 
 const workflowApps = [
   { label: 'Docs', icon: FileText, className: 'docs-node' },
@@ -110,39 +111,41 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(40,132,255,0.16),transparent_34%),radial-gradient(circle_at_50%_95%,rgba(39,124,255,0.16),transparent_36%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0)_0%,rgba(5,5,5,0.42)_71%,#050505_100%)]" />
 
-        <header className="relative z-20 mx-auto grid h-20 max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-5 px-5 sm:px-8">
-          <nav className="hidden items-center gap-8 text-[0.78rem] font-medium uppercase tracking-[0.08em] text-white/84 lg:flex">
+        <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050505]/72 backdrop-blur-xl">
+          <div className="mx-auto grid h-20 max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-5 px-5 sm:px-8">
+            <nav className="hidden items-center gap-8 text-[0.78rem] font-medium uppercase tracking-[0.08em] text-white/84 lg:flex">
             {navItems.map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
                 {item}
               </a>
             ))}
-          </nav>
+            </nav>
 
-          <a href="#" aria-label="Bishop Consulting home" className="justify-self-start lg:justify-self-center">
-            <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="h-auto w-[190px] sm:w-[255px]" priority />
-          </a>
+            <a href="#" aria-label="Bishop Consulting home" className="justify-self-start lg:justify-self-center">
+              <Image src={logoSrc} alt="Bishop Consulting" width={4280} height={432} className="h-auto w-[190px] sm:w-[255px]" priority />
+            </a>
 
-          <div className="hidden justify-end gap-6 text-white/90 md:flex">
-            <a href="#contact" aria-label="Instagram" className="transition hover:text-[#2d8cff]">
-              <Instagram className="h-[18px] w-[18px]" />
-            </a>
-            <a href="#contact" aria-label="Facebook" className="transition hover:text-[#2d8cff]">
-              <Facebook className="h-[18px] w-[18px]" />
-            </a>
-            <a href="#contact" aria-label="X" className="transition hover:text-[#2d8cff]">
-              <Twitter className="h-[18px] w-[18px]" />
-            </a>
-            <a href="#contact" aria-label="LinkedIn" className="transition hover:text-[#2d8cff]">
-              <Linkedin className="h-[18px] w-[18px]" />
-            </a>
-            <a href="#contact" aria-label="YouTube" className="transition hover:text-[#2d8cff]">
-              <Youtube className="h-[18px] w-[18px]" />
-            </a>
+            <div className="hidden justify-end gap-6 text-white/90 md:flex">
+              <a href="#contact" aria-label="Instagram" className="transition hover:text-[#2d8cff]">
+                <Instagram className="h-[18px] w-[18px]" />
+              </a>
+              <a href="#contact" aria-label="Facebook" className="transition hover:text-[#2d8cff]">
+                <Facebook className="h-[18px] w-[18px]" />
+              </a>
+              <a href="#contact" aria-label="X" className="transition hover:text-[#2d8cff]">
+                <Twitter className="h-[18px] w-[18px]" />
+              </a>
+              <a href="#contact" aria-label="LinkedIn" className="transition hover:text-[#2d8cff]">
+                <Linkedin className="h-[18px] w-[18px]" />
+              </a>
+              <a href="#contact" aria-label="YouTube" className="transition hover:text-[#2d8cff]">
+                <Youtube className="h-[18px] w-[18px]" />
+              </a>
+            </div>
           </div>
         </header>
 
-        <div className="relative z-10 mx-0 flex min-h-[calc(100vh-80px)] w-full min-w-0 max-w-[390px] flex-col items-center px-5 pb-12 pt-12 text-center sm:mx-auto sm:max-w-[1320px] sm:px-8 sm:pt-16">
+        <div className="relative z-10 mx-0 flex min-h-screen w-full min-w-0 max-w-[390px] flex-col items-center px-5 pb-12 pt-40 text-center sm:mx-auto sm:max-w-[1420px] sm:px-8 sm:pt-44 lg:pt-48">
           <h1 className="w-full min-w-0 max-w-[340px] text-[2.18rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:max-w-[900px] sm:text-[5.5rem] sm:leading-[0.98] lg:text-[6.55rem]">
             <span className="block">Make operations</span>
             <span className="block">
@@ -154,23 +157,23 @@ export default function Home() {
             Bishop Consulting helps existing businesses reduce manual work, connect fragmented workflows, and create faster output with practical AI systems.
           </p>
 
-          <div className="mt-10 flex w-full max-w-[280px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row">
+          <div className="mt-12 flex w-full max-w-[320px] flex-col justify-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-5">
             <a
               href="#contact"
-              className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-[0.98rem] font-semibold text-black transition hover:bg-[#dcecff]"
+              className="inline-flex h-16 items-center justify-center rounded-full bg-white px-10 text-[1.08rem] font-semibold text-black shadow-[0_0_38px_rgba(255,255,255,0.16)] transition hover:bg-[#dcecff] sm:min-w-[250px]"
             >
               Book a Consultation
             </a>
             <a
               href="#solutions"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/34 px-8 text-[0.98rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff]"
+              className="inline-flex h-16 items-center justify-center gap-3 rounded-full border border-white/34 px-10 text-[1.08rem] font-semibold text-white transition hover:border-[#2d8cff] hover:text-[#9fc9ff] sm:min-w-[250px]"
             >
-              <Play className="h-4 w-4 fill-current" />
+              <Play className="h-5 w-5 fill-current" />
               See How It Works
             </a>
           </div>
 
-          <div className="workflow-stage mt-14 w-full min-w-0 max-w-[350px] sm:max-w-[1070px]">
+          <div className="workflow-stage mt-28 w-full min-w-0 max-w-[350px] sm:max-w-[1240px]">
             <div className="workflow-row">
               <div className="flow-card input-card">
                 <div className="icon-strip">
@@ -224,11 +227,7 @@ export default function Home() {
           <div className="relative z-10">
             <h2 className="max-w-[760px] text-[3.05rem] font-semibold leading-[0.98] tracking-[-0.04em] sm:text-[4.55rem] lg:text-[5.45rem] xl:text-[5.85rem]">
               Agentic workflows for
-              <span className="workflow-phrase" aria-label="Rotating workflow examples">
-                {workflowPhrases.map((phrase) => (
-                  <span key={phrase}>{phrase}</span>
-                ))}
-              </span>
+              <span className="workflow-phrase">{workflowPhrase}</span>
             </h2>
             <p className="mt-8 max-w-[640px] text-lg leading-8 text-white/58 sm:text-xl">
               One request can pull context from docs, sheets, CRM, and email, then route the next output without your team moving every piece by hand.
@@ -248,7 +247,7 @@ export default function Home() {
 
             <div className="automation-core">
               <Zap className="h-10 w-10" />
-              <span>Core</span>
+              <span>AI Agent</span>
             </div>
 
             {workflowApps.map(({ label, icon: Icon, className }) => (
@@ -274,49 +273,52 @@ export default function Home() {
       </section>
 
       <section id="about" className="relative bg-[#050505] px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div>
-            <h2 className="max-w-[560px] text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.5rem]">
-              Existing businesses already have the data. The problem is the drag.
-            </h2>
-            <p className="mt-7 max-w-[540px] text-lg leading-8 text-white/58">
-              We start with the systems you already run, then design the AI architecture that removes repeat work, shortens response time, and gives leaders better visibility.
-            </p>
+        <div className="mx-auto grid max-w-[1460px] gap-16 lg:grid-cols-[1.35fr_0.9fr] lg:items-center">
+          <div className="outcome-shift" aria-label="Hours spent without AI compared to with AI">
+            <div className="hours-column without-ai">
+              <h3>Without AI</h3>
+              <p>Hours spent</p>
+              <div className="hour-blocks" aria-hidden="true">
+                {Array.from({ length: 10 }).map((_, index) => (
+                  <span key={index} />
+                ))}
+              </div>
+            </div>
+
+            <ArrowRight className="outcome-arrow" aria-hidden="true" />
+
+            <div className="hours-column with-ai">
+              <h3>With AI</h3>
+              <p>Hours spent</p>
+              <div className="hour-blocks" aria-hidden="true">
+                {Array.from({ length: 10 }).map((_, index) => (
+                  <span key={index} />
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="signal-panel">
-            <div className="panel-topline">
-              <span>Manual Workload</span>
-              <span>AI Operating Layer</span>
-            </div>
-            <div className="timeline-bars">
-              {['Intake', 'Review', 'Routing', 'Reporting', 'Follow-up'].map((item, index) => (
-                <div key={item} className="timeline-row">
-                  <span>{item}</span>
-                  <div>
-                    <i style={{ width: `${92 - index * 10}%` }} />
-                    <b style={{ width: `${36 + index * 8}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="panel-result">
-              <Sparkles className="h-5 w-5 text-[#2d8cff]" />
-              <span>Less rework, faster handoffs, cleaner decisions.</span>
-            </div>
+          <div className="text-right lg:justify-self-end">
+            <h2 className="ml-auto max-w-[680px] text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.4rem] xl:text-[4.85rem]">
+              What is your
+              <span className="block text-[#2d8cff]">time worth?</span>
+            </h2>
+            <p className="ml-auto mt-8 max-w-[610px] text-lg leading-8 text-white/58 sm:text-xl sm:leading-9">
+              Our AI systems eliminate repetitive work, reduce delays, and give your team back time to focus on what actually moves the needle.
+            </p>
           </div>
         </div>
       </section>
 
       <section id="solutions" className="relative overflow-hidden bg-white px-5 py-24 text-black sm:px-8 lg:py-32">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2d8cff] to-transparent" />
-        <div className="mx-auto max-w-[1220px]">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="mx-auto max-w-[1380px]">
+          <div className="grid gap-16 lg:grid-cols-[0.95fr_1.25fr] lg:items-start">
             <div>
-              <h2 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.3rem]">
+              <h2 className="max-w-[620px] text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[4.15rem] xl:text-[4.45rem]">
                 Simple systems. Visible savings.
               </h2>
-              <p className="mt-6 max-w-[470px] text-lg leading-8 text-black/58">
+              <p className="mt-6 max-w-[610px] text-lg leading-8 text-black/58">
                 The work is not about adding a shiny tool. It is about changing the operating model so teams spend less time moving information and more time acting on it.
               </p>
             </div>
@@ -354,8 +356,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="painpoint-section relative overflow-hidden bg-[#050505] px-5 py-24 text-white sm:px-8 lg:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(45,140,255,0.12),transparent_34%)]" />
+        <div className="painpoint-panel mx-auto" aria-label="Top pain points checklist">
+          <p className="painpoint-headline">
+            Think of your top 3 biggest pain points.
+            <span>We can fix them.</span>
+          </p>
+          <ul className="painpoint-checklist">
+            {painpointChecks.map((item) => (
+              <li key={item}>
+                <span className="painpoint-check-icon" aria-hidden="true">
+                  <CheckCircle2 className="h-5 w-5" />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section id="insights" className="bg-[#050505] px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1380px] gap-16 lg:grid-cols-[1.18fr_0.82fr] lg:items-center">
+        <div className="mx-auto grid max-w-[1480px] gap-16 lg:grid-cols-[1.38fr_0.82fr] lg:items-center">
           <div className="savings-grid">
             {savings.map(({ value, label, icon: Icon }) => (
               <div key={label} className="saving-card">

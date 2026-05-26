@@ -80,7 +80,7 @@ svg {
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1fr 120px 1.2fr 120px 1fr;
+  grid-template-columns: minmax(260px, 1fr) 130px minmax(330px, 1.15fr) 130px minmax(260px, 1fr);
   align-items: center;
   gap: 0;
   min-width: 0;
@@ -88,12 +88,12 @@ svg {
 
 .flow-card {
   min-width: 0;
-  min-height: 94px;
+  min-height: 106px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  padding: 18px 20px;
+  padding: 20px 24px;
   color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(18px);
 }
@@ -136,6 +136,120 @@ svg {
 
 .check-strip span {
   color: rgba(255, 255, 255, 0.58);
+}
+
+.painpoint-panel {
+  position: relative;
+  display: grid;
+  width: 100%;
+  max-width: 980px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+  align-items: center;
+  gap: 28px;
+  margin-top: 72px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 80% 50%, rgba(45, 140, 255, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.026));
+  padding: 20px 22px;
+  text-align: left;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.painpoint-panel::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+  pointer-events: none;
+}
+
+.painpoint-section .painpoint-panel {
+  margin-top: 0;
+}
+
+.painpoint-headline,
+.painpoint-checklist {
+  position: relative;
+  z-index: 1;
+}
+
+.painpoint-headline {
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.45rem, 2.2vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.painpoint-headline span {
+  display: block;
+  color: #2d8cff;
+}
+
+.painpoint-checklist {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.painpoint-checklist li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 7px 12px 7px 8px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.25;
+  animation: painpointItemCheck 7.2s ease-in-out infinite;
+}
+
+.painpoint-check-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.3);
+  animation: painpointIconCheck 7.2s ease-in-out infinite;
+}
+
+.painpoint-check-icon svg {
+  transform: scale(0.72);
+  stroke-dasharray: 64;
+  stroke-dashoffset: 64;
+  animation: painpointDrawCheck 7.2s ease-in-out infinite;
+}
+
+.painpoint-checklist li:nth-child(2),
+.painpoint-checklist li:nth-child(2) .painpoint-check-icon,
+.painpoint-checklist li:nth-child(2) .painpoint-check-icon svg {
+  animation-delay: 1.15s;
+}
+
+.painpoint-checklist li:nth-child(3),
+.painpoint-checklist li:nth-child(3) .painpoint-check-icon,
+.painpoint-checklist li:nth-child(3) .painpoint-check-icon svg {
+  animation-delay: 2.3s;
 }
 
 .flow-line {
@@ -405,32 +519,9 @@ svg {
   position: relative;
   display: block;
   min-height: 2.18em;
-  overflow: hidden;
   color: #2d8cff;
   font-size: clamp(3.05rem, 5.6vw, 5.35rem);
   line-height: 1.02;
-}
-
-.workflow-phrase span {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(0.5em);
-  animation: workflowPhraseSwap 16s ease-in-out infinite;
-}
-
-.workflow-phrase span:nth-child(2) {
-  animation-delay: 4s;
-}
-
-.workflow-phrase span:nth-child(3) {
-  animation-delay: 8s;
-}
-
-.workflow-phrase span:nth-child(4) {
-  animation-delay: 12s;
 }
 
 .automation-web {
@@ -438,15 +529,9 @@ svg {
   z-index: 1;
   min-height: 620px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
   background:
     radial-gradient(circle at 50% 48%, rgba(255, 117, 30, 0.16), transparent 20%),
-    radial-gradient(circle at 62% 52%, rgba(45, 140, 255, 0.16), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 24px 90px rgba(0, 0, 0, 0.28);
+    radial-gradient(circle at 62% 52%, rgba(45, 140, 255, 0.16), transparent 34%);
 }
 
 .automation-web::before {
@@ -565,7 +650,7 @@ svg {
   flex: 0 0 auto;
 }
 
-.workflow-node span {
+.workflow-node > span {
   min-width: 0;
   white-space: nowrap;
 }
@@ -639,7 +724,7 @@ svg {
   animation: outputCardPulse 4s ease-in-out infinite;
 }
 
-.workflow-output-card span {
+.workflow-output-card > span {
   display: block;
   color: rgba(255, 255, 255, 0.48);
   font-size: 0.72rem;
@@ -886,6 +971,98 @@ svg {
   animation-delay: 2.4s;
 }
 
+.outcome-shift {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 80px minmax(300px, 1.1fr);
+  align-items: start;
+  gap: 34px;
+  min-height: 330px;
+  padding-top: 28px;
+}
+
+.hours-column h3 {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.without-ai h3 {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.hours-column p {
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hour-blocks {
+  display: grid;
+  grid-template-columns: repeat(10, 26px);
+  gap: 6px;
+  margin-top: 34px;
+}
+
+.hour-blocks span {
+  width: 26px;
+  height: 32px;
+  border-radius: 7px;
+}
+
+.without-ai .hour-blocks span {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.13));
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.08);
+}
+
+.with-ai .hour-blocks span {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.with-ai .hour-blocks span:nth-child(-n + 3) {
+  border-color: rgba(45, 140, 255, 0.76);
+  background: linear-gradient(180deg, #2d8cff, #1675df);
+  box-shadow: 0 0 24px rgba(45, 140, 255, 0.38);
+}
+
+.outcome-arrow {
+  margin-top: 105px;
+  width: 52px;
+  height: 52px;
+  color: rgba(255, 255, 255, 0.8);
+  stroke-width: 1.2;
+}
+
+.outcome-callout {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  gap: 18px;
+  max-width: 350px;
+  margin-top: 44px;
+  border: 1px solid rgba(45, 140, 255, 0.42);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 22px 24px;
+  color: #fff;
+  box-shadow: 0 0 42px rgba(45, 140, 255, 0.1);
+}
+
+.outcome-callout span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.outcome-callout strong {
+  display: block;
+  font-weight: 800;
+}
+
 .signal-panel {
   position: relative;
   overflow: hidden;
@@ -1065,15 +1242,15 @@ svg {
 .savings-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .saving-card {
-  min-height: 290px;
+  min-height: 300px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
-  padding: 30px;
+  padding: 32px;
 }
 
 .saving-card strong {
@@ -1113,6 +1290,72 @@ svg {
   50% {
     opacity: 0.45;
     transform: translateY(-24px) scale(1.35);
+  }
+}
+
+@keyframes painpointItemCheck {
+  0%,
+  15% {
+    border-color: rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.045);
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  24%,
+  78% {
+    border-color: rgba(45, 140, 255, 0.38);
+    background: rgba(45, 140, 255, 0.09);
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  100% {
+    border-color: rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.045);
+    color: rgba(255, 255, 255, 0.58);
+  }
+}
+
+@keyframes painpointIconCheck {
+  0%,
+  15% {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.055);
+    color: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+  }
+
+  24%,
+  78% {
+    border-color: rgba(45, 140, 255, 0.78);
+    background: rgba(45, 140, 255, 0.18);
+    color: #2d8cff;
+    box-shadow: 0 0 18px rgba(45, 140, 255, 0.28);
+  }
+
+  100% {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.055);
+    color: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+  }
+}
+
+@keyframes painpointDrawCheck {
+  0%,
+  15% {
+    stroke-dashoffset: 64;
+    transform: scale(0.72);
+  }
+
+  24%,
+  78% {
+    stroke-dashoffset: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    stroke-dashoffset: 64;
+    transform: scale(0.72);
   }
 }
 
@@ -1258,6 +1501,41 @@ svg {
 }
 
 @media (max-width: 980px) {
+  .outcome-shift {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .outcome-arrow {
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
+
+  .hour-blocks {
+    grid-template-columns: repeat(10, minmax(18px, 26px));
+  }
+
+  .hour-blocks span {
+    width: 100%;
+  }
+
+  .outcome-callout {
+    max-width: none;
+  }
+
+  .painpoint-panel {
+    max-width: 680px;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .painpoint-headline {
+    max-width: none;
+  }
+
   .automation-web {
     min-height: 620px;
   }
@@ -1468,6 +1746,57 @@ svg {
 @media (max-width: 640px) {
   .hero-grid::before {
     background-size: 44px 44px;
+  }
+
+  .painpoint-panel {
+    margin-top: 44px;
+    padding: 14px;
+  }
+
+  .outcome-shift {
+    gap: 24px;
+  }
+
+  .hours-column h3 {
+    font-size: 1.2rem;
+  }
+
+  .hours-column p {
+    margin-top: 12px;
+  }
+
+  .hour-blocks {
+    gap: 5px;
+    margin-top: 18px;
+  }
+
+  .hour-blocks span {
+    height: 28px;
+    border-radius: 6px;
+  }
+
+  .outcome-callout {
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    margin-top: 26px;
+    padding: 18px;
+  }
+
+  .painpoint-headline {
+    font-size: 1.42rem;
+    line-height: 1.16;
+  }
+
+  .painpoint-checklist li {
+    grid-template-columns: 30px 1fr;
+    min-height: 40px;
+    font-size: 0.78rem;
+    text-align: left;
+  }
+
+  .painpoint-check-icon {
+    width: 25px;
+    height: 25px;
   }
 
   .workflow-stage {

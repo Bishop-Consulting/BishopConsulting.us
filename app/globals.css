@@ -1808,8 +1808,37 @@ svg {
 }
 
 .consultation-wide,
-.consultation-submit {
+.consultation-submit,
+.consultation-status {
   grid-column: 1 / -1;
+}
+
+.consultation-honey {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.consultation-status {
+  margin: 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.consultation-status.success {
+  border: 1px solid rgba(62, 237, 123, 0.32);
+  background: rgba(62, 237, 123, 0.1);
+  color: rgba(226, 255, 236, 0.92);
+}
+
+.consultation-status.error {
+  border: 1px solid rgba(255, 108, 108, 0.34);
+  background: rgba(255, 108, 108, 0.1);
+  color: rgba(255, 226, 226, 0.94);
 }
 
 .consultation-submit {
@@ -1832,6 +1861,12 @@ svg {
 .consultation-submit:hover {
   background: #dcecff;
   transform: translateY(-1px);
+}
+
+.consultation-submit:disabled {
+  cursor: wait;
+  opacity: 0.68;
+  transform: none;
 }
 
 @keyframes shimmer {

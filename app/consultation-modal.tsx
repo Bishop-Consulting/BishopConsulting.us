@@ -10,33 +10,47 @@ type ConsultationModalProps = {
 };
 
 const recipient = 'service@bishopconsulting.us';
+const formEndpoint = `https://formsubmit.co/ajax/${recipient}`;
 
 export default function ConsultationModal({ className, label = 'Book a Consultation', showArrow = false }: ConsultationModalProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const subject = encodeURIComponent('Bishop Consulting consultation request');
-    const body = encodeURIComponent(
-      [
-        'New consultation request',
-        '',
-        `Name: ${formData.get('name') || ''}`,
-        `Email: ${formData.get('email') || ''}`,
-        `Phone: ${formData.get('phone') || ''}`,
-        `Business: ${formData.get('business') || ''}`,
-        `Industry: ${formData.get('industry') || ''}`,
-        `Preferred contact: ${formData.get('contactPreference') || ''}`,
-        '',
-        'Workflow or pain point:',
-        `${formData.get('message') || ''}`
-      ].join('\n')
-    );
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const submitterEmail = formData.get('email');
 
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    setIsOpen(false);
+    if (typeof submitterEmail === 'string') {
+      formData.set('_replyto', submitterEmail);
+    }
+
+    setStatus('sending');
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Consultation request failed');
+      }
+
+      form.reset();
+      setStatus('sent');
+      window.setTimeout(() => {
+        setIsOpen(false);
+        setStatus('idle');
+      }, 1600);
+    } catch {
+      setStatus('error');
+    }
   }
 
   return (
@@ -56,10 +70,16 @@ export default function ConsultationModal({ className, label = 'Book a Consultat
 
             <div>
               <h2 id="consultation-title">Book a Consultation</h2>
-              <p>Tell us what workflow is costing time. This static form opens an email draft addressed to Bishop Consulting.</p>
+              <p>Tell us what workflow is costing time. Your request will be sent directly to Bishop Consulting.</p>
             </div>
 
             <form className="consultation-form" onSubmit={handleSubmit}>
+              <input type="hidden" name="_subject" value="Bishop Consulting consultation request" />
+              <input type="hidden" name="_template" value="table" />
+              <label className="consultation-honey" aria-hidden="true">
+                Leave this field empty
+                <input name="_honey" type="text" tabIndex={-1} autoComplete="off" />
+              </label>
               <label>
                 Name
                 <input name="name" type="text" required />
@@ -93,8 +113,11 @@ export default function ConsultationModal({ className, label = 'Book a Consultat
                 <textarea name="message" rows={4} required />
               </label>
 
-              <button className="consultation-submit" type="submit">
-                Book Consultation
+              {status === 'sent' ? <p className="consultation-status success">Request sent. We will follow up soon.</p> : null}
+              {status === 'error' ? <p className="consultation-status error">Something went wrong. Please try again or email service@bishopconsulting.us.</p> : null}
+
+              <button className="consultation-submit" type="submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending...' : 'Book Consultation'}
                 <ArrowRight className="h-5 w-5" />
               </button>
             </form>
